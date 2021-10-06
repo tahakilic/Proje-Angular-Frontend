@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" (click)="openWorkers()">Navbar</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <form class="d-flex" >
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search" name="search"
+           [(ngModel)]="search"   (keydown.enter)="searchWorkers()"> <!-- keydown.enter yazıdan sonra enterladığında -->
+    <button class="btn btn-outline-success" type="submit" (click)="searchWorkers()">Search</button>
+  </form>
+  <div class="login" (click)="openLogin()">Oturum Aç</div>
+  <div class="register" (click)="openRegister()">Kayıt Ol</div>
+
+</nav>
+<router-outlet></router-outlet>
+
+
+
+
