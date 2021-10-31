@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {catchError} from "rxjs/operators";
 import {SessionService} from "../session-service";
+import {WorkerModel} from "../../model/worker-model";
 
 
 @Component({
@@ -13,17 +14,23 @@ import {SessionService} from "../session-service";
 })
 export class RegisterComponent {
 
+
   operationStatus=false;
 
   form = new FormGroup({
     id:new FormControl(null),
-    detailId:new FormControl(this.sessionService.workerDetailSet?.id),
+    detailId:new FormControl(),
     firstName:new FormControl(),
     lastName:new FormControl(),
     age:new FormControl(),
     email:new FormControl(),
     telNumber:new FormControl(),
-    password:new FormControl()
+    password:new FormControl(),
+    address:new FormControl(),
+    areaOfInterest:new FormControl(),
+    description:new FormControl(),
+    price:new FormControl(),
+    workInLocations:new FormControl(),
   }) ;
 
 
@@ -32,13 +39,6 @@ export class RegisterComponent {
   ngOnInit(){
 
   }
-  openRegisterDetail(){
-    this.router.navigate(["session/register/detail"]);
-   this.create();
-
-
-  }
-
 
 
   create(){
@@ -50,7 +50,12 @@ export class RegisterComponent {
         age: this.form?.controls['age'].value,
         email: this.form?.controls['email'].value,
         telNumber: this.form?.controls['telNumber'].value,
-        password: this.form?.controls['password'].value
+        password: this.form?.controls['password'].value,
+        address: this.form?.controls['address'].value,
+        areaOfInterest: this.form?.controls['areaOfInterest'].value,
+        description: this.form?.controls['description'].value,
+        price: this.form?.controls['price'].value,
+        workInLocations: this.form?.controls['workInLocations'].value
       }
      this.operationStatus=true;
 
@@ -60,7 +65,7 @@ export class RegisterComponent {
           throw err;
         })).subscribe(worker => {
           this.operationStatus = false
-          console.warn(worker)
+
 
         });
 
@@ -68,7 +73,7 @@ export class RegisterComponent {
           this.form?.reset();
         }
 
-      }, 0)
+      }, 5000)
 
       console.warn(payload.id)
     }

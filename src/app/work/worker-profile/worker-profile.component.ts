@@ -10,6 +10,7 @@ import {WorkerModel} from "../../model/worker-model";
 
 })
 export class WorkerProfileComponent {
+  title!:"bi bi-star";
 
   worker:WorkerModel.WorkerItem | undefined;
   constructor(private workerService:WorkerService,private activatedRoute:ActivatedRoute) {
@@ -21,6 +22,7 @@ export class WorkerProfileComponent {
 
     this.workerService.getByWorker(workerId).subscribe(worker=>this.worker=worker)
   }
+
 
 
 

@@ -5,6 +5,7 @@ import {AppComponent} from "./app.component";
 
 const routes: Routes = [
 
+  {path:"",redirectTo:"workers",pathMatch:"full"},
   {path:'workers', loadChildren:()=>import('./work/worker.module').then(m=>m.WorkerModule)},
   {path:"session",loadChildren:()=>import("./session/session.module").then(m=>m.SessionModule)}
 ];

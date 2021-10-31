@@ -1,25 +1,60 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" (click)="openWorkers()">Navbar</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link">Disabled</a>
-        </li>
-      </ul>
+<body>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" (click)="openWorker()">Worker</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <input class="form-control form-control-dark mr-1 w-75" type="text" placeholder="Search" aria-label="Search"  [(ngModel)]="search"   (keydown.enter)="searchWorkers()">
+  <button class="form-control form-control-dark w-auto mr-2" type="submit" (click)="searchWorkers()">Search</button>
+
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a *ngIf="isLoggedIn()==false" class="form-control form-control-dark w-auto ml-2 mr-3"  (click)="openLogin()">Login</a>
+      <a *ngIf="isLoggedIn()==true" class="form-control form-control-dark w-auto ml-2 mr-3" (click)="logOut()">LogOut</a>
     </div>
   </div>
-  <form class="d-flex" >
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search" name="search"
-           [(ngModel)]="search"   (keydown.enter)="searchWorkers()"> <!-- keydown.enter yazıdan sonra enterladığında -->
-    <button class="btn btn-outline-success" type="submit" (click)="searchWorkers()">Search</button>
-  </form>
-  <div class="login" (click)="openLogin()">Oturum Aç</div>
-  <div class="register" (click)="openRegister()">Kayıt Ol</div>
+</header>
 
-</nav>
-<router-outlet></router-outlet>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-md-2">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="workers">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              Anasayfa
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  routerLink="session/login">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              Oturum Aç
+            </a>
+          </li>
+          <li class="nav-item" routerLink="session/register">
+            <a class="nav-link" routerLink="product-add-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              Kayıt Ol
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="worker/profile/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              Profil
+            </a>
+          </li>
+        </ul>
+        <hr>
 
-
-
-
+      </div>
+    </nav>
+    </div>
+    <div class="col col-md-10">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+</body>

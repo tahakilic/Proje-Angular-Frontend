@@ -1,24 +1,19 @@
-<div class="sidenav">
-  <div class="login-main-text">
-    <h2>Application<br> Login Page</h2>
-    <p>Login or register from here to access.</p>
-  </div>
-</div>
-<div class="main">
+
   <div class="col-md-6 col-sm-12">
     <div class="login-form">
-      <form class="form">
+      <form class="form" [formGroup]="loginForm">
+        <h1 class="h3 mb-3 fw-normal">Oturum Aç</h1>
         <div class="form-group">
-          <label>User Name</label>
-          <input type="text" class="form-control" placeholder="User Name">
+          <label>E-Mail</label>
+          <input type="text" class="form-control" placeholder="E-Mail" formControlName="email">
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Password" formControlName="password">
         </div>
-        <button type="submit" class="btn btn-black">Login</button>
-        <button type="submit" class="btn btn-secondary">Register</button>
+        <button type="submit" class="btn btn-black" (click)="userLogin()">Login</button><br>
+        <button type="submit" class="btn btn-secondary" (click)="registerClick()">Register</button>
       </form>
     </div>
   </div>
-</div>
+

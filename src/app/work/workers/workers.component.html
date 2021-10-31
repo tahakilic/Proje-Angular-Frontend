@@ -1,130 +1,22 @@
-<!--<div class="row">
-  <div *ngFor="let worker of workers" >
-      <div class="col">
-      <div class="card" style="width: 18rem;">
-        <img src="https://picsum.photos/id/237/300/300" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{worker.firstName}} {{worker.lastName}}</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a class="btn btn-primary mr-2" (click)="openDetail(worker.id)">Profil</a>
-          <a class="btn btn-dark mr-2" data-toggle="modal" data-target="#workerModal" (click)="edit(worker)">Update</a>
-          <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" (click)="deleteModal(worker)" >Delete</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-<!--deneme-->
 <div class="container ">
-  <div class="row">
-
-    <div class="col">
-      <div class="row mb-2 mt-2" >
-        <div class="col"></div>
-        <div class="col">AD SOYAD</div>
-        <div class="col">LOKASYON</div>
-        <div class="col">İLGİ ALANI</div>
-        <div class="col">ÜCRET</div>
-      </div>
-
-      <div *ngFor="let worker of workers" >
-        <div class="row mb-2" >
-          <div class="col"><img src="https://picsum.photos/id/237/300/300" class="card-img-top" alt="..." (click)="openDetail(worker.id)"></div>
-          <div class="col" align="center" ><h5 class="firstName" (click)="openDetail(worker.id)">{{worker.firstName}} {{worker.lastName}} <br>{{worker.age}}</h5></div>
-          <div class="col"> <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p></div>
-          <div class="col">İmage</div>
-          <div class="col">İsim</div>
-
-        </div>
-      </div>
-    </div>
-
-
-  </div>
-  </div>
-<!--
-<div>
-  <button class="btn btn-primary"  data-toggle="modal" data-target="#workerModal" (click)="create()">Create Worker</button>
-</div>
--->
-
-
-<!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">{{selectedWorker?.firstName}}{{selectedWorker?.lastName}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-       Silmek istediğinizden emin misiniz?
-        <ng-container *ngIf="deleteOperationMessage">
-        <div class="alert alert-success" role="alert" *ngIf="deleteOperationMessage.indexOf('başarılı')>-1">
-         İşlem Başarılı!
-        </div>
-        <div class="alert alert-danger" role="alert" *ngIf="deleteOperationMessage.indexOf('başarısız')>-1">
-          İşlem Başarısız!
-        </div>
-        </ng-container>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
-        <button type="button" class="btn btn-primary" (click)="delete()">
-          <span *ngIf="operationStatus">Lütfen Bekleyiniz...</span>
-          <span *ngIf="!operationStatus">Evet</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="workerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Workers Update Create</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" *ngIf="form">
-
-        <form [formGroup]="form">
-          <div class="mb-3">
-            <label for="firstName" >Adı</label>
-            <input type="email" class="form-control {{form.controls.firstName.touched && form.controls.firstName.errors ?'is-invalid':''}}" id="firstName" aria-describedby="emailHelp" placeholder="Enter Title" formControlName="firstName">
-            <small id="firstNameRequired" class="text-danger" *ngIf="form.controls.firstName.touched && form.controls.firstName.errors && form.controls.firstName.errors.required">
-              please enter First Name value
-            </small>
-          </div>
-          <div class="mb-3">
-            <label for="lastName" class="form-label">Soy Adı</label>
-            <textarea class="form-control"  id="lastName" rows="3" placeholder="Enter Description" formControlName="lastName"></textarea>
-          </div>
-
-          <div class="mb-3">
-            <label for="email" class="form-label">E-Mail</label>
-            <textarea class="form-control"  id="email" rows="3" placeholder="Enter List" formControlName="email"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="telNumber" class="form-label">Telefon Numarası</label>
-            <textarea class="form-control"  id="telNumber" rows="3" placeholder="Enter List" formControlName="telNumber"></textarea>
-          </div>
-        </form>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button [disabled]="operationStatus"  type="button" class="btn btn-primary" (click)="createOrUpdate()">
-          <span *ngIf="operationStatus">Lütfen Bekleyiniz...</span>
-          <span *ngIf="!operationStatus">Save changes</span>
-        </button>
-      </div>
-    </div>
-  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">AD SOYAD</th>
+      <th scope="col">İŞ LOKASYONU</th>
+      <th scope="col">İŞ ALANI</th>
+      <th scope="col">ÜCRET</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let worker of workers">
+      <th scope="row"><img src="../../assets/images/kisi.jpg" class="card-img-top w-25 h-25" alt="..." (click)="openDetail(worker.id)"></th>
+      <td (click)="openDetail(worker.id)">{{worker.firstName |uppercase}} {{worker.lastName|uppercase}}</td>
+      <td>{{worker.workInLocations}}</td>
+      <td>{{worker.areaOfInterest}}</td>
+      <td>{{worker.price | currency}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>

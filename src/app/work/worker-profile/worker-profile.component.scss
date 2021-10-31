@@ -157,3 +157,13 @@ img {
     transform: scale(1); } }
 
 /*# sourceMappingURL=style.css.map */
+
+
+.rate-yellow {
+  color: var(--bs-yellow);
+}
+
+.rate > input {
+  position: absolute;
+  opacity: 0;
+}

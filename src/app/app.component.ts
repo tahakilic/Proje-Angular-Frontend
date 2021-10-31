@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {CrossService} from "./services/cross-service";
 import {WorkerService} from "./work/worker-service";
 import {Router} from "@angular/router";
+import {AccountService} from "./services/account.service";
 
 
 @Component({
@@ -13,8 +14,12 @@ export class AppComponent {
 
   search="";
 
-  constructor(private crossService:CrossService,private workerService:WorkerService,private router:Router) {
-  }
+  constructor(private crossService:CrossService,
+              private workerService:WorkerService,
+              private router:Router,
+              private accountService:AccountService
+  ){}
+
   ngOnInit(){
     setTimeout(()=>{
       this.searchWorkers();
@@ -24,7 +29,7 @@ export class AppComponent {
 
   searchWorkers(){
     if(this.search.length > 0){
-      this.workerService.search(this.search).subscribe((res)=>{ //subscribe olmadan apiye gitmez
+      this.workerService.search(this.search).subscribe((res)=>{
         this.crossService.setWorker(res);
       });
     }else {
@@ -37,12 +42,16 @@ export class AppComponent {
   openLogin(){
     this.router.navigate(["session/login"]);
   }
-
-  openRegister(){
-    this.router.navigate(["session/register"]);
-  }
-  openWorkers(){
+  openWorker(){
     this.router.navigate(["workers"]);
   }
+
+  logOut(){
+    return this.accountService.logOut();
+  }
+  isLoggedIn(){
+    return this.accountService.isLoggedIn();
+  }
+
 
 }

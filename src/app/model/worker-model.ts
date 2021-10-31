@@ -9,18 +9,16 @@ export namespace WorkerModel{
     telNumber:string;
     password:string;
     age:number;
-    detailId:number;
-  }
-
-  export interface WorkerDetail{
-    id:number;
     address:string;
     areaOfInterest:string;
     description:string;
     price:number;
     workInLocations:string;
+
   }
 
-
+  export interface UserLoginId{
+    userId:number;
+  }
 
 }

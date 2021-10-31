@@ -21,7 +21,11 @@ export class WorkerService{
     return this.httpClient.get<WorkerModel.WorkerItem>(environment.api+"/worker/"+id);
   }
 
-  updateWorker(body:any):Observable<WorkerModel.WorkerItem>{
+  /*updateWorker(body:any):Observable<WorkerModel.WorkerItem>{
+    return this.httpClient.post<WorkerModel.WorkerItem>(environment.api+"/worker/createOrUpdate",body);
+  }*/
+
+  updateWorker(body:any,):Observable<WorkerModel.WorkerItem>{
     return this.httpClient.post<WorkerModel.WorkerItem>(environment.api+"/worker/createOrUpdate",body);
   }
 
@@ -34,5 +38,6 @@ export class WorkerService{
   search(search:string):Observable<WorkerModel.WorkerItem[]>{
     return this.httpClient.get<WorkerModel.WorkerItem[]>(environment.api+"/worker/search/"+search)
   }
+
 
 }
