@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {WorkerModel} from "../model/worker-model";
 import {environment} from "../../environments/environment";
+import {CommentModel} from "../model/comment-model";
 
 
 @Injectable({
@@ -31,12 +32,15 @@ export class WorkerService{
 
   deleteWorker(id:number | undefined){
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-
     return this.httpClient.delete(environment.api+"/worker/"+id, { headers, responseType:'text'});
   }
 
   search(search:string):Observable<WorkerModel.WorkerItem[]>{
     return this.httpClient.get<WorkerModel.WorkerItem[]>(environment.api+"/worker/search/"+search)
+  }
+
+  comment(body:any,userId:number):Observable<CommentModel.comment>{
+    return this.httpClient.post<CommentModel.comment>(environment.api+"/comment/create/"+userId,body)
   }
 
 

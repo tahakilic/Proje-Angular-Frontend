@@ -34,7 +34,9 @@ export class RegisterComponent {
   }) ;
 
 
-  constructor(private router:Router,private fb:FormBuilder,private sessionService:SessionService) {
+  constructor(private router:Router,
+              private fb:FormBuilder,
+              private sessionService:SessionService) {
   }
   ngOnInit(){
 

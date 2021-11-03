@@ -6,7 +6,8 @@ import {AccountService} from "../../services/account.service";
   providedIn:"root"
 })
 export class LoginGuard implements CanActivate{
-  constructor(private router:Router,private accountService:AccountService) {
+  constructor(private router:Router,
+              private accountService:AccountService) {
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let logged=this.accountService.isLoggedIn();

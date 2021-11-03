@@ -11,9 +11,11 @@ export class AccountService{
   }
 
   loggedIn=false;
+  profileId!:number;
 
   login(userLogin:WorkerModel.WorkerItem){
     if(userLogin.id !== null){
+      this.profileId=userLogin.id;
       this.loggedIn=true;
       localStorage.setItem("isLogged",userLogin.firstName)
       return true;
@@ -23,6 +25,10 @@ export class AccountService{
 
   isLoggedIn(){
     return this.loggedIn
+  }
+
+  userProfileId(){
+    return this.profileId;
   }
 
   logOut(){

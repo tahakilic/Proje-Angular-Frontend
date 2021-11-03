@@ -13,6 +13,7 @@ import {AccountService} from "./services/account.service";
 export class AppComponent {
 
   search="";
+  id!:number;
 
   constructor(private crossService:CrossService,
               private workerService:WorkerService,
@@ -47,10 +48,19 @@ export class AppComponent {
   }
 
   logOut(){
-    return this.accountService.logOut();
+    this.accountService.logOut();
+    this.router.navigate(["workers"])
   }
   isLoggedIn(){
     return this.accountService.isLoggedIn();
+  }
+
+  profileId(id:number){
+   this.id=id;
+  }
+
+  profile(){
+    this.router.navigate(["profile/"+this.id])
   }
 
 

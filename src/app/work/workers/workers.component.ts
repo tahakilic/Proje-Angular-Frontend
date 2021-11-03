@@ -32,7 +32,10 @@ export class WorkersComponent implements OnDestroy{
 
 
 
-  constructor(private workerService:WorkerService,private router:Router, private fb:FormBuilder,private crossService:CrossService) {
+  constructor(private workerService:WorkerService,
+              private router:Router,
+              private fb:FormBuilder,
+              private crossService:CrossService) {
   }
 
   ngOnInit(){

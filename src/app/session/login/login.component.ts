@@ -6,6 +6,7 @@ import {SessionService} from "../session-service";
 import {User} from "../../model/user";
 import {WorkerModel} from "../../model/worker-model";
 import {catchError} from "rxjs/operators";
+import {AppComponent} from "../../app.component";
 
 @Component({
   selector:"app-login",
@@ -16,9 +17,14 @@ import {catchError} from "rxjs/operators";
 export class LoginComponent implements OnInit{
 
   loginForm!:FormGroup;
+  profileId!:number;
 
 
-  constructor(private router:Router,private fb:FormBuilder,private accountService:AccountService,private sessionService:SessionService) {
+  constructor(private router:Router,
+              private fb:FormBuilder,
+              private accountService:AccountService,
+              private sessionService:SessionService,
+              private appComponent:AppComponent) {
   }
 
   ngOnInit(){
@@ -46,11 +52,13 @@ export class LoginComponent implements OnInit{
       throw err;
     })).subscribe(user=>{
     if(user.id!==null){
+      this.profileId=user.id
       this.accountService.login(user)
-    }else{
-      console.warn("else geçti");
+      this.appComponent.profileId(user.id)
+      this.router.navigate(["profile/"+this.profileId])
     }
     });
+
   }
 }
 
