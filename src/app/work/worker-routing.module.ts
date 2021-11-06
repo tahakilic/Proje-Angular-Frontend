@@ -7,7 +7,7 @@ import {WorkerMyProfileComponent} from "./worker-my-profile/worker-my-profile.co
 
 
 const routes :Routes = [
-  { path:'',component:WorkersComponent },
+  {path:'',component:WorkersComponent },
   {path:':id',component:WorkerProfileComponent},
   {path:"profile/:id",component:WorkerMyProfileComponent,canActivate:[LoginGuard]}
 ];

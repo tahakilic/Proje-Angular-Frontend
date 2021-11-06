@@ -26,9 +26,10 @@ export class WorkerService{
     return this.httpClient.post<WorkerModel.WorkerItem>(environment.api+"/worker/createOrUpdate",body);
   }*/
 
-  updateWorker(body:any,):Observable<WorkerModel.WorkerItem>{
+  updateWorker(body:any):Observable<WorkerModel.WorkerItem>{
     return this.httpClient.post<WorkerModel.WorkerItem>(environment.api+"/worker/createOrUpdate",body);
   }
+
 
   deleteWorker(id:number | undefined){
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
@@ -39,8 +40,12 @@ export class WorkerService{
     return this.httpClient.get<WorkerModel.WorkerItem[]>(environment.api+"/worker/search/"+search)
   }
 
-  comment(body:any,userId:number):Observable<CommentModel.comment>{
-    return this.httpClient.post<CommentModel.comment>(environment.api+"/comment/create/"+userId,body)
+  comment(body:any,userId:number):Observable<CommentModel.Comment>{
+    return this.httpClient.post<CommentModel.Comment>(environment.api+"/comment/create/"+userId,body)
+  }
+
+  userComment(userId:number):Observable<CommentModel.Comment[]>{
+    return this.httpClient.get<CommentModel.Comment[]>(environment.api+"/comment/"+userId);
   }
 
 

@@ -59,14 +59,14 @@ a, a:active, a:focus {
 }
 
 .text-secondary, .text-secondary-hover:hover {
-  color: #59b73f !important;
+  color: #333333 !important;
 }
 .display-25 {
   font-size: 1.4rem;
 }
 
 .text-primary, .text-primary-hover:hover {
-  color: #ff712a !important;
+  color: #333333 !important;
 }
 
 p {
@@ -75,4 +75,25 @@ p {
 
 .mb-1-6, .my-1-6 {
   margin-bottom: 1.6rem;
+}
+
+.panel{
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+  background-color: white;
+
+}
+.profile-photo{
+  width: 350px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.button-profile{
+  margin-top: 7px;
+  color: snow;
+  width: 500px;
 }

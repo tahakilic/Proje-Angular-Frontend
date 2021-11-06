@@ -17,8 +17,5 @@ export namespace WorkerModel{
 
   }
 
-  export interface UserLoginId{
-    userId:number;
-  }
 
 }

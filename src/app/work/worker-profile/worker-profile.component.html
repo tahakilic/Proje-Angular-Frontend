@@ -10,15 +10,15 @@
       <div class="details col-md-6">
         <h3 class="product-title">{{worker.firstName}} {{worker.lastName}}</h3>
         <div class="rating">
-          <span class="review-no">Yaş: {{worker.age}}</span>
+          <span class="review-no"><i class="bi bi-person-fill"></i> Yaş: {{worker.age}}</span>
         </div>
-        <p class="product-description"><b>Hakkında:</b>{{worker.description}}</p>
-        <p  class="product-description"><b>İş Lokasyonu:</b> {{worker.workInLocations}}</p>
-        <p  class="product-description"><b>İlgilendiği iş alanları:</b>{{worker.areaOfInterest}}</p>
-        <p  class="product-description"><b>E-mail: </b>{{worker.email}}</p>
-        <p  class="product-description"><b>Telefon: </b>{{worker.telNumber}}</p>
+        <p class="product-description"><i class="bi bi-chat-left-text-fill"></i><b> Hakkında:</b>{{worker.description}}</p>
+        <p  class=" product-description"><i class="bi bi-geo-alt-fill"></i> <b> İş Lokasyonu:</b> {{worker.workInLocations}}</p>
+        <p  class="product-description"><i class="bi bi-briefcase-fill"></i> <b> İlgilendiği iş alanları:</b>{{worker.areaOfInterest}}</p>
+        <p  class="product-description"><i class="bi bi-envelope-fill"></i> <b> E-mail: </b>{{worker.email}}</p>
+        <p  class="product-description"><i class="bi bi-telephone-fill"></i> <b> Telefon: </b>{{worker.telNumber}}</p>
 
-        <h5 class="price">Ücret: <span>{{worker.price | currency}}</span></h5>
+        <h5 class="price"><i class="bi bi-currency-dollar"></i>Ücret: <span>{{worker.price | currency}}</span></h5>
 
       </div>
     </div>
@@ -61,12 +61,12 @@
         </div>
       </div>
 
-
-      <div class="card border-0 shadow-sm mb-3">
+      <h4>Yorumlar</h4>
+      <div class="card border-0 shadow-sm mb-3" *ngFor="let comment of userComment">
         <div class="card-body">
-          <h4>Yorumlar</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-          <div class="text-muted fs-6 mb-3">Koray SADIKLAR, (Bahçe Temizliği) 28/02/2021</div>
+
+          <p>{{comment.comment}}</p>
+          <div class="text-muted fs-6 mb-3">{{comment.firstName}} {{comment.lastName}}, ({{comment.workName}}) {{comment.date | date:'dd/MM/yyyy'}}</div>
           <ul class="list-inline fs-5">
             <li class="list-inline-item me-4">
               <i class="bi bi-hand-thumbs-up"></i> 32

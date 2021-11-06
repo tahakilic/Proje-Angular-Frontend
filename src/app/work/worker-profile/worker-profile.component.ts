@@ -3,6 +3,7 @@ import {WorkerService} from "../worker-service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {WorkerModel} from "../../model/worker-model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CommentModel} from "../../model/comment-model";
 
 @Component({
   selector:'worker-detail',
@@ -15,6 +16,7 @@ export class WorkerProfileComponent {
   worker:WorkerModel.WorkerItem | undefined;
   form!:FormGroup;
   userId!:number;
+  userComment:CommentModel.Comment[] |undefined;
 
   constructor(private workerService:WorkerService,
               private activatedRoute:ActivatedRoute,
@@ -26,6 +28,8 @@ export class WorkerProfileComponent {
     const params=this.activatedRoute.snapshot.params;
     const workerId=params.id;
     this.workerService.getByWorker(workerId).subscribe(worker=>this.worker=worker)
+
+    this.workerService.userComment(workerId).subscribe(userComment=> this.userComment=userComment)
 
     this.userId=workerId;
 

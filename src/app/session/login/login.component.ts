@@ -16,8 +16,8 @@ import {AppComponent} from "../../app.component";
 })
 export class LoginComponent implements OnInit{
 
-  loginForm!:FormGroup;
-  profileId!:number;
+  loginForm:FormGroup | undefined;
+  profileId:number | undefined;
 
 
   constructor(private router:Router,
@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit{
   ngOnInit(){
 
     this.loginForm=this.fb.group({
-      email:["",Validators.required],
-      password:["",Validators.required]
+      email:["",[Validators.required]],
+      password:["",[Validators.required]]
       })
 
 
@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit{
   userLogin(){
 
    let payload={
-      email:this.loginForm.controls["email"].value,
-      password:this.loginForm.controls["password"].value
+      email:this.loginForm?.controls["email"].value,
+      password:this.loginForm?.controls["password"].value
     }
    this.sessionService.loginUser(payload).pipe(catchError(err => {
       throw err;
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit{
       this.profileId=user.id
       this.accountService.login(user)
       this.appComponent.profileId(user.id)
-      this.router.navigate(["profile/"+this.profileId])
+      this.router.navigate(["workers/profile/"+this.profileId])
     }
     });
 

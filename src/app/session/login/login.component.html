@@ -1,7 +1,7 @@
 
   <div class="col-md-6 col-sm-12">
     <div class="login-form">
-      <form class="form" [formGroup]="loginForm">
+      <form class="form" [formGroup]="loginForm" *ngIf="loginForm">
         <h1 class="h3 mb-3 fw-normal">Oturum Aç</h1>
         <div class="form-group">
           <label>E-Mail</label>

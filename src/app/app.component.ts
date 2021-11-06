@@ -41,8 +41,17 @@ export class AppComponent {
   }
 
   openLogin(){
-    this.router.navigate(["session/login"]);
+    if(this.accountService.isLoggedIn()==false){
+      this.router.navigate(["session/login"]);
+    }
   }
+
+  openRegister(){
+    if(this.accountService.isLoggedIn()==false){
+      this.router.navigate(["session/register"]);
+    }
+  }
+
   openWorker(){
     this.router.navigate(["workers"]);
   }
@@ -60,7 +69,7 @@ export class AppComponent {
   }
 
   profile(){
-    this.router.navigate(["profile/"+this.id])
+    this.router.navigate(["workers/profile/"+this.id])
   }
 
 

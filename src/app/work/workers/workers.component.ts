@@ -14,22 +14,13 @@ import {CrossService} from "../../services/cross-service";
 
 export class WorkersComponent implements OnDestroy{
 
-  title='merhaba'
-
   workers:WorkerModel.WorkerItem[]=[];
-
-  selectedWorker:WorkerModel.WorkerItem | undefined;
 
   private sub:any;
 
   private subCross:any;
 
   form:FormGroup | undefined;
-
-  operationStatus = false;
-
-  deleteOperationMessage:any;
-
 
 
   constructor(private workerService:WorkerService,
@@ -64,6 +55,7 @@ export class WorkersComponent implements OnDestroy{
     this.sub.unsubscribe(); //bunun nedeni subscribe çalışmayı bıraksın diye yoksa ilerleyen zamanlarda site yavaşlar
      this.subCross.unsubscribe();
   }
+
 
 
 }
