@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {WorkerService} from "../worker-service";
 import {WorkerModel} from "../../model/worker-model";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {User} from "../../model/user";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+
 
 @Component({
   selector: 'app-worker-my-profile',
@@ -14,6 +14,7 @@ export class WorkerMyProfileComponent implements OnInit {
 
   profile:WorkerModel.WorkerItem | undefined;
   form!: FormGroup;
+  id!:number;
 
 
   constructor(private activatedRoute:ActivatedRoute,
@@ -25,6 +26,7 @@ export class WorkerMyProfileComponent implements OnInit {
   ngOnInit() {
     const params=this.activatedRoute.snapshot.params;
     const profileId=params.id;
+    this.id=profileId
     this.workerService.getByWorker(profileId).pipe(err=> err).subscribe(profile=>{this.profile=profile})
 
 
@@ -83,9 +85,16 @@ update(){
   }
   }
 
-  delete(id?:number){
-    this.workerService.deleteWorker(id).subscribe(err=>console.log(err))
-    location.reload()
+  delete(){
+    this.workerService.deleteWorker(this.id).subscribe(err=>{
+      console.log(err)
+      location.reload()
+    })
+
+  }
+
+  settings(id:number|undefined){
+    this.router.navigate(["workers/profile/settings/"+id])
   }
 
 

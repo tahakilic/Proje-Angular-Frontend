@@ -3,6 +3,7 @@ import {CrossService} from "./services/cross-service";
 import {WorkerService} from "./work/worker-service";
 import {Router} from "@angular/router";
 import {AccountService} from "./services/account.service";
+import {AlertifyService} from "./services/alertify.service";
 
 
 @Component({
@@ -18,7 +19,8 @@ export class AppComponent {
   constructor(private crossService:CrossService,
               private workerService:WorkerService,
               private router:Router,
-              private accountService:AccountService
+              private accountService:AccountService,
+              private alert:AlertifyService
   ){}
 
   ngOnInit(){
@@ -54,6 +56,7 @@ export class AppComponent {
 
   openWorker(){
     this.router.navigate(["workers"]);
+
   }
 
   logOut(){

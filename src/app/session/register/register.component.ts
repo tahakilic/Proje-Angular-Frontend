@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {catchError} from "rxjs/operators";
 import {SessionService} from "../session-service";
-import {WorkerModel} from "../../model/worker-model";
+import {AlertifyService} from "../../services/alertify.service";
 
 
 @Component({
@@ -16,10 +16,10 @@ export class RegisterComponent {
 
 
   operationStatus=false;
+  form!:FormGroup;
 
-  form = new FormGroup({
+  /*form = new FormGroup({
     id:new FormControl(null),
-    detailId:new FormControl(),
     firstName:new FormControl(),
     lastName:new FormControl(),
     age:new FormControl(),
@@ -31,14 +31,29 @@ export class RegisterComponent {
     description:new FormControl(),
     price:new FormControl(),
     workInLocations:new FormControl(),
-  }) ;
+  }) ;*/
 
 
   constructor(private router:Router,
               private fb:FormBuilder,
-              private sessionService:SessionService) {
+              private sessionService:SessionService,
+              private alertify:AlertifyService) {
   }
   ngOnInit(){
+    this.form = this.fb.group({
+      id:[],
+      firstName:["",[Validators.required]],
+      lastName:["",[Validators.required]],
+      email:["",[Validators.required]],
+      telNumber:["",[Validators.required]],
+      password:["",[Validators.required]],
+      age:["",[Validators.required]],
+      address:["",[Validators.required]],
+      areaOfInterest:["",[Validators.required]],
+      description:["",[Validators.required]],
+      price:["",[Validators.required]],
+      workInLocations:["",[Validators.required]]
+    })
 
   }
 
@@ -64,10 +79,11 @@ export class RegisterComponent {
       setTimeout(() => { //butona tıklandığında lütfen bekleyiniz yazdırmak için
         this.sessionService.createOrUpdate(payload).pipe(catchError(err => { //pipe backende hata olursa hataya düşer
           this.operationStatus = false;
+            this.alertify.error("Kayıt Sırasında Hata Oluştu!!!");
           throw err;
         })).subscribe(worker => {
+          this.alertify.success("Kayıt başarılı bir şekilde oluşturuldu.")
           this.operationStatus = false
-
 
         });
 
@@ -75,9 +91,8 @@ export class RegisterComponent {
           this.form?.reset();
         }
 
-      }, 5000)
+      }, 100)
 
-      console.warn(payload.id)
     }
   }
 

@@ -3,10 +3,10 @@ import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../services/account.service";
 import {SessionService} from "../session-service";
-import {User} from "../../model/user";
-import {WorkerModel} from "../../model/worker-model";
+
 import {catchError} from "rxjs/operators";
 import {AppComponent} from "../../app.component";
+import {AlertifyService} from "../../services/alertify.service";
 
 @Component({
   selector:"app-login",
@@ -16,7 +16,7 @@ import {AppComponent} from "../../app.component";
 })
 export class LoginComponent implements OnInit{
 
-  loginForm:FormGroup | undefined;
+  loginForm!:FormGroup;
   profileId:number | undefined;
 
 
@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit{
               private fb:FormBuilder,
               private accountService:AccountService,
               private sessionService:SessionService,
-              private appComponent:AppComponent) {
+              private appComponent:AppComponent,
+              private alertifyService:AlertifyService) {
   }
 
   ngOnInit(){
@@ -35,7 +36,6 @@ export class LoginComponent implements OnInit{
       })
 
 
-
   }
 
   registerClick(){
@@ -43,18 +43,19 @@ export class LoginComponent implements OnInit{
   }
 
   userLogin(){
-
    let payload={
-      email:this.loginForm?.controls["email"].value,
-      password:this.loginForm?.controls["password"].value
+      email:this.loginForm.controls["email"].value,
+      password:this.loginForm.controls["password"].value
     }
    this.sessionService.loginUser(payload).pipe(catchError(err => {
-      throw err;
+     throw err;
+     this.alertifyService.error("Hata");
     })).subscribe(user=>{
     if(user.id!==null){
       this.profileId=user.id
       this.accountService.login(user)
       this.appComponent.profileId(user.id)
+      this.alertifyService.success(user.firstName+" "+user.lastName+" Oturum Açıldı");
       this.router.navigate(["workers/profile/"+this.profileId])
     }
     });

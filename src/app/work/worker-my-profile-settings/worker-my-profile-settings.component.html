@@ -1,0 +1,80 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <img src="assets/images/kisi.jpg" class="profile-photo">
+    <div class="col-md-7 col-lg-4 mb-5 mb-lg-0 wow fadeIn">
+      <div class="card border-0 shadow">
+        <div class="card-body p-1-9 p-xl-5">
+          <form [formGroup]="form">
+          <div class="mb-4">
+
+              <input type="text" class="w-50" id="firstName" aria-describedby="firstName" placeholder="İsim" formControlName="firstName">
+              <input type="text" class="w-50" id="lastName" aria-describedby="lastName" placeholder="Soyisim" formControlName="lastName">
+            <span class="text-primary"><br>Yaş:<input type="text"  name="age" id="age" placeholder="yaş" formControlName="age"/></span>
+          </div>
+
+          <ul class="list-unstyled mb-4">
+            <li class="mb-3"><a><i class="far fa-envelope display-25 me-3 text-secondary"></i>
+              <input type="text"  id="email" aria-describedby="email" placeholder="email" formControlName="email">
+            </a></li>
+            <li class="mb-3"><a><i class="fas fa-mobile-alt display-25 me-3 text-secondary"></i>
+              <input type="text" name="telNumber" id="telNumber" placeholder="telefon numarası" formControlName="telNumber"/>
+            </a></li>
+            <li><a><i class="fas fa-map-marker-alt display-25 me-3 text-secondary"></i>
+              <textarea class="w-75" id="address" rows="2" placeholder="adres" formControlName="address"></textarea>
+            </a></li>
+          </ul>
+          <ul class="social-icon-style2 ps-0">
+            <li><a href="#!" class="rounded-3"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#!" class="rounded-3"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#!" class="rounded-3"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="#!" class="rounded-3"><i class="fab fa-linkedin-in"></i></a></li>
+          </ul>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <form [formGroup]="form">
+      <div class="ps-lg-1-6 ps-xl-5 panel mt-3">
+        <div class="mb-5 wow fadeIn">
+          <div class="text-start mb-2 wow fadeIn">
+            <h2 class="h5 mb-0 text-primary"><i class="bi bi-chat-left-text-fill"></i> Hakkımda</h2>
+          </div>
+          <p>
+            <textarea class="form-control" id="description" rows="3" placeholder="hakkında" formControlName="description"></textarea>
+          </p>
+        </div>
+      </div>
+
+      <div class="ps-lg-1-6 ps-xl-5 panel">
+        <div class="mb-5 wow fadeIn">
+          <div class="text-start mb-2 wow fadeIn">
+            <h2 class="h5 mb-0 text-primary"><i class="bi bi-briefcase-fill"></i> Çalışmak İstediğim İş Alanları</h2>
+          </div>
+          <p>
+            <textarea class="form-control" id="areaOfInterest" rows="3" placeholder="ilgi alanları" formControlName="areaOfInterest"></textarea>
+          </p>
+        </div>
+      </div>
+
+      <div class="ps-lg-1-6 ps-xl-5 panel">
+        <div class="mb-5 wow fadeIn">
+          <div class="text-start mb-2 wow fadeIn">
+            <h2 class="h5 mb-0 text-primary"><i class="bi bi-geo-alt-fill"></i> Çalışmak İstediğim İş Lokasyonları</h2>
+          </div>
+          <p>
+            <textarea class="form-control" id="workInLocations" rows="3" placeholder="lokasyonlar" formControlName="workInLocations"></textarea>
+          </p>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="d-grid gap-2 col-6 mx-auto" (click)="update()">
+  <a class="btn btn-secondary button-profile" >Kaydet</a>
+</div>
+<div class="d-grid gap-2 col-6 mx-auto" (click)="close()">
+  <a class="btn btn-danger mb-2 button-profile" > İptal </a>
+</div>

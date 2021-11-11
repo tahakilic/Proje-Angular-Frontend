@@ -58,7 +58,7 @@
 
 
 <div class="d-grid gap-2 col-6 mx-auto">
-  <a class="btn btn-secondary button-profile" data-toggle="modal" data-target="#userProfileModal" (click)="edit(profile)">Profili Düzenle</a>
+  <a class="btn btn-secondary button-profile" data-toggle="modal" data-target="#userProfileModal" (click)="settings(profile?.id)">Profili Düzenle</a>
 </div>
 <div class="d-grid gap-2 col-6 mx-auto">
 
@@ -139,9 +139,9 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="update()">
-          <span>Save changes</span>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+        <button type="button" class="btn btn-primary " (click)="update()">
+          <span>Kaydet</span>
         </button>
       </div>
     </div>
@@ -168,7 +168,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
         <button type="button" class="btn btn-primary">
-          <span (click)="delete(profile?.id)">Evet</span>
+          <span (click)="delete()">Evet</span>
         </button>
       </div>
     </div>
